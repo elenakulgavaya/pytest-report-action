@@ -14,8 +14,6 @@ debug = false;
 const inputPath = core.getInput("path");
     const includeSummary = core.getInput("includeSummary");
     const numFailures = core.getInput("numFailures");
-    const accessToken = core.getInput("access-token");
-    const name = core.getInput("name");
     const globber = await glob.create(inputPath, {
       followSymbolicLinks: false,
     });
@@ -49,42 +47,16 @@ const inputPath = core.getInput("path");
       junitObj.annotations = [...junitObj.annotations];
     }
     
-    const pullRequest = github.context.payload.pull_request;
-    const link = (pullRequest && pullRequest.html_url) || github.context.ref;
-    const status = "completed";
-    const head_sha =
-      (pullRequest && pullRequest.head.sha) || github.context.sha;
     const annotations = junitObj.annotations;
 
-    const createCheckRequest = {
-      ...github.context.repo,
-      name,
-      head_sha,
-      status,
-      conclusion,
-      output: {
-        title: name,
-        summary: junitObj.toSummaryMessage(),
-        annotations,
-      },
-    };
-
-    
-    if(accessToken) {
-      log("Access token detected. Attempting to create a new check field with annotations");
-      const octokit = github.getOctokit(accessToken);
-      await octokit.rest.checks.create(createCheckRequest);
-    } else {
-      log("Access token not detected.  Writing annotations to base check.");
-      
-        if (includeSummary && conclusion === 'failure') {
-        core.setFailed(annotations.shift().message);
-        }
-
-        for (const annotation of annotations) {
-        core.setFailed(annotation.message);
-        }
+    if (includeSummary && conclusion === 'failure') {
+    core.setFailed(annotations.shift().message);
     }
+
+    for (const annotation of annotations) {
+    core.setFailed(annotation.message);
+    }
+
   } catch (error) {
     core.setFailed(error.message);
   }
