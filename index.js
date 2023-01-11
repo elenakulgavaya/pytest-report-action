@@ -76,13 +76,13 @@ const inputPath = core.getInput("path");
     // } else {
     //   log("Access token not detected.  Writing annotations to base check.");
       
-    //   if (includeSummary && conclusion === 'failure') {
-    //     core.setFailed(annotations.shift().message);
-    //   }
+    if (includeSummary && conclusion === 'failure') {
+    core.setFailed(annotations.shift().message);
+    }
 
-    //   for (const annotation of annotations) {
-    //     core.setFailed(annotation.message);
-    //   }
+    for (const annotation of annotations) {
+    core.setFailed(annotation.message);
+    }
     // }
   } catch (error) {
     core.setFailed(error.message);
