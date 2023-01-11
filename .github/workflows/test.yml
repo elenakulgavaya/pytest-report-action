@@ -7,15 +7,15 @@ on: [push]
 
 jobs:
   npm-tests:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
       - run: npm ci
       - run: npm test
   failure-tests:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
       - name: Test action
         uses: ./
         with:
@@ -29,9 +29,9 @@ jobs:
           echo "::error::failure-tests should have succeeded, and created a new check that failed with annotations. But instead failed";
           exit 1;
   failure-tests-notoken:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
       - name: Test action
         uses: ./
         with:
@@ -44,9 +44,9 @@ jobs:
           echo "::error::failure-tests-notoken should have failed and reported annations on this step. But instead succeeded";
           exit 1;
   error-tests:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
       - name: Test action
         uses: ./
         with:
@@ -60,9 +60,9 @@ jobs:
           echo "::error::error-tests should have succeeded, and created a new check that failed with annotations. But instead failed";
           exit 1;
   error-tests-notoken:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
       - name: Test action
         uses: ./
         with:
@@ -75,9 +75,9 @@ jobs:
           echo "::error::error-tests-notoken should have failed and reported annations on this step. But instead succeeded.";
           exit 1;
   success-tests:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
       - name: Test action
         uses: ./
         with:
@@ -91,9 +91,9 @@ jobs:
           echo "::error::success-tests should have succeeded, and created a new check that failed with annotations. But instead failed";
           exit 1;
   success-tests-notoken:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
       - name: Test action
         uses: ./
         with:
