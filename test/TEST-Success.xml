@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+    <testsuite name="org.dummy.DummyTest" tests="3" failures="0" errors="0" timestamp="2020-07-21T19:20:12" hostname="dummy" time="0.132">
+        <testcase name="test1" classname="org.dummy.DummyTest" time="0.028"/>
+        <testcase name="test2_givenAPrecondition_ThenItShouldDoSomething" classname="org.dummy.DummyTest" time="0.054" />
+        <testcase classname="test.yml" name="doing an action given a precondition should result in something" time="0" />
+    </testsuite>
+    <testsuite name="org.dummy.DummyTest2">
+    </testsuite>
+</testsuites>
