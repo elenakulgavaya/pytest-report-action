@@ -69,25 +69,25 @@ const inputPath = core.getInput("path");
       },
     };
 
-//     if(accessToken) {
-//       log("Access token detected. Attempting to create a new check field with annotations");
-//       const octokit = new github.GitHub(accessToken);
-//       await octokit.checks.create(createCheckRequest);
-//     } else {
-//       log("Access token not detected.  Writing annotations to base check.");
+    // if(accessToken) {
+    //   log("Access token detected. Attempting to create a new check field with annotations");
+    //   const octokit = new github.GitHub(accessToken);
+    //   await octokit.checks.create(createCheckRequest);
+    // } else {
+    //   log("Access token not detected.  Writing annotations to base check.");
       
-//       if (includeSummary && conclusion === 'failure') {
-//         core.setFailed(annotations.shift().message);
-//       }
+    //   if (includeSummary && conclusion === 'failure') {
+    //     core.setFailed(annotations.shift().message);
+    //   }
 
-//       for (const annotation of annotations) {
-//         core.setFailed(annotation.message);
-//       }
-//     }
-//   } catch (error) {
-//     core.setFailed(error.message);
-//   }
-// })();
+    //   for (const annotation of annotations) {
+    //     core.setFailed(annotation.message);
+    //   }
+    // }
+  } catch (error) {
+    core.setFailed(error.message);
+  }
+})();
 
 
 //#### Class that represents the TEST-*.xml file
