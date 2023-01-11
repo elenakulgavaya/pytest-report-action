@@ -72,7 +72,7 @@ const inputPath = core.getInput("path");
     if(accessToken) {
       log("Access token detected. Attempting to create a new check field with annotations");
       const octokit = github.getOctokit(accessToken);
-      await octokit.checks.create(createCheckRequest);
+      await octokit.rest.checks.create(createCheckRequest);
     } else {
       log("Access token not detected.  Writing annotations to base check.");
       
