@@ -40,7 +40,7 @@ const { Cipher } = require("crypto");
     junitObj.annotations = [summaryAnno, ...junitObj.annotations];
     const annotations = junitObj.annotations;
 
-    if (includeSummary && conclusion === 'failure') {
+    if (conclusion === 'failure') {
       core.setFailed(annotations.shift().message);
 
         for (const annotation of annotations) {
