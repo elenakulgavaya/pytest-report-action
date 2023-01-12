@@ -11,7 +11,7 @@ debug = false;
 //##### Main Method ######
 (async () => {
   try {
-    // debug = core.getInput("debug");
+    debug = core.getInput("debug");
     const inputPath = core.getInput("path");
     const includeSummary = core.getInput("includeSummary");
     const numFailures = core.getInput("numFailures");
@@ -55,6 +55,9 @@ debug = false;
     //   core.setFailed(annotations.shift().message);
     }
 
+    log("Some annotations")
+    log(annotations)
+    
     for (const annotation of annotations) {
       core.setFailed("failed because of annotations")
     //   core.setFailed(annotation.message);
