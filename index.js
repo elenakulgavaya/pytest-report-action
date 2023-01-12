@@ -51,21 +51,15 @@ debug = false;
     const annotations = junitObj.annotations;
 
     if (includeSummary && conclusion === 'failure') {
-      core.setFailed("Failed because of conclusion")
-    //   core.setFailed(annotations.shift().message);
-    }
+      core.setFailed(annotations.shift().message);
 
-    log("Some annotations")
-    log(annotations)
+        for (const annotation of annotations) {
+          core.setFailed(annotation.message);
+        }
+    }
     
-    for (const annotation of annotations) {
-      core.setFailed("failed because of annotations")
-    //   core.setFailed(annotation.message);
-    }
-
   } catch (error) {
-    core.setFailed("Failed beacuse of error")
-    // core.setFailed(error.message);
+    core.setFailed(error.message);
   }
 })();
 
