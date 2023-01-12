@@ -95,7 +95,6 @@ class JunitDAO {
     }
 
     if (this.maxNumFailures !== -1 && this.annotations.length >= this.maxNumFailures) {
-      log("Max number of failures reached. Suppressing further annotations.");
       return;
     }
 
@@ -120,7 +119,6 @@ class JunitDAO {
     }
 
     if (this.maxNumFailures !== -1 && this.annotations.length >= this.maxNumFailures) {
-      log("Max number of failures reached. Suppressing further annotations.");
       return;
     }
 
@@ -272,11 +270,6 @@ async function findTestLocation(testReportFile, testcase) {
   return { filePath: bestFilePath, line };
 }
 
-async function log(message) {
-  if(debug) {
-    console.log(message);
-  }
-}
 
 module.exports.findTestLocation = findTestLocation;
 module.exports.readTestSuites = readTestSuites;

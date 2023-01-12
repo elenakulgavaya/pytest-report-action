@@ -32,7 +32,6 @@ jobs:
       - name: Test action
         uses: ./
         with:
-          name: "error tests no token"
           path: "**/TEST-Error.xml"
       - name: Assert failure
         if: success()
@@ -46,5 +45,4 @@ jobs:
       - name: Test action
         uses: ./
         with:
-          name: "Success tests no token"
           path: "**/TEST-Success.xml"
