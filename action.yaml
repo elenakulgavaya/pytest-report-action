@@ -10,7 +10,7 @@ inputs:
     default: "**/TEST-*.xml"
   numFailures:
     description: "max number of failed tests to include"
-    require: true
+    required: true
     default: 10
 runs:
   using: "node16"
