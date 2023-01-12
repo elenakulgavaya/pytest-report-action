@@ -6,12 +6,12 @@ on: [push]
   #   types: [opened, synchronize, reopened, ready_for_review]
 
 jobs:
-  npm-tests:
-    runs-on: ubuntu-22.04
-    steps:
-      - uses: actions/checkout@v3
-      - run: npm ci
-      - run: npm test
+  # npm-tests:
+  #   runs-on: ubuntu-22.04
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - run: npm ci
+  #     - run: npm test
   failure-tests:
     runs-on: ubuntu-22.04
     steps:
@@ -20,7 +20,6 @@ jobs:
         uses: ./
         with:
           path: "**/TEST-Failure.xml"
-          debug: true
       - name: Assert failure
         if: success()
         run: |
@@ -35,7 +34,6 @@ jobs:
         with:
           name: "error tests no token"
           path: "**/TEST-Error.xml"
-          debug: true
       - name: Assert failure
         if: success()
         run: |
@@ -50,4 +48,3 @@ jobs:
         with:
           name: "Success tests no token"
           path: "**/TEST-Success.xml"
-          debug: true

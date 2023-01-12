@@ -1,31 +1,17 @@
-name: "Junit Report Annotations Fork Frendly"
-description: "Create an annotation of the test run summary, and also list failed tests as seperate annotations."
+name: "Pytest Report Annotations"
+description: "List failed tests summary and results as annotations."
 branding:
   icon: "box"
   color: "green"
 inputs:
-  access-token:
-    description: "github token"
   path:
     description: "glob to junit xml files"
     required: true
     default: "**/TEST-*.xml"
-  includeSummary:
-    description: "include summary annotation"
-    required: true
-    default: false
   numFailures:
     description: "max number of failed tests to include"
     require: true
     default: 10
-  debug:
-    description: "Log debug messages"
-    require: true
-    default: false
-  name:
-    description: "Name of the check in the github actions UI"
-    require: true
-    default: "Junit Results"
 runs:
   using: "node16"
   main: "index.js"

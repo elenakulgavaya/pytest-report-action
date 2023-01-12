@@ -1,19 +1,15 @@
 const core = require("@actions/core");
-const github = require("@actions/github");
 const glob = require("@actions/glob");
 const parser = require("xml2js");
 const fs = require("fs");
 const path = require("path");
 const { Cipher } = require("crypto");
 
-debug = false;
 
 //##### Main Method ######
 (async () => {
   try {
-    debug = core.getInput("debug");
     const inputPath = core.getInput("path");
-    const includeSummary = core.getInput("includeSummary");
     const numFailures = core.getInput("numFailures");
     const globber = await glob.create(inputPath, {
       followSymbolicLinks: false,
@@ -41,13 +37,7 @@ debug = false;
     };
 
     const conclusion = junitObj.annotations.length === 0 ? "success" : "failure";
-    if(includeSummary) {
-      junitObj.annotations = [summaryAnno, ...junitObj.annotations];
-    } else {
-      log("Ignoring summary annoation and only creating failing annoations");
-      junitObj.annotations = [...junitObj.annotations];
-    }
-    
+    junitObj.annotations = [summaryAnno, ...junitObj.annotations];
     const annotations = junitObj.annotations;
 
     if (includeSummary && conclusion === 'failure') {
@@ -56,8 +46,14 @@ debug = false;
         for (const annotation of annotations) {
           core.setFailed(annotation.message);
         }
+    } else {
+
+      for (const annotation of annotations) {
+        core.setOutput(annotation.message)
+        // core.setFailed(annotation.message);
+      }
     }
-    
+
   } catch (error) {
     core.setFailed(error.message);
   }
