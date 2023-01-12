@@ -4,6 +4,7 @@ const glob = require("@actions/glob");
 const parser = require("xml2js");
 const fs = require("fs");
 const path = require("path");
+const { Cipher } = require("crypto");
 
 debug = false;
 
@@ -11,7 +12,7 @@ debug = false;
 (async () => {
   try {
     debug = core.getInput("debug");
-const inputPath = core.getInput("path");
+    const inputPath = core.getInput("path");
     const includeSummary = core.getInput("includeSummary");
     const numFailures = core.getInput("numFailures");
     const globber = await glob.create(inputPath, {
@@ -50,15 +51,18 @@ const inputPath = core.getInput("path");
     const annotations = junitObj.annotations;
 
     if (includeSummary && conclusion === 'failure') {
-    core.setFailed(annotations.shift().message);
+      core.setFailed("Failed because of conclusion")
+    //   core.setFailed(annotations.shift().message);
     }
 
     for (const annotation of annotations) {
-    core.setFailed(annotation.message);
+      core.setFailed("failed because of annotations")
+    //   core.setFailed(annotation.message);
     }
 
   } catch (error) {
-    core.setFailed(error.message);
+    core.setFailed("Failed beacuse of error")
+    // core.setFailed(error.message);
   }
 })();
 
