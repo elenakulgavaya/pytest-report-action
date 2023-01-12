@@ -11,7 +11,7 @@ debug = false;
 //##### Main Method ######
 (async () => {
   try {
-    debug = core.getInput("debug");
+    // debug = core.getInput("debug");
     const inputPath = core.getInput("path");
     const includeSummary = core.getInput("includeSummary");
     const numFailures = core.getInput("numFailures");
