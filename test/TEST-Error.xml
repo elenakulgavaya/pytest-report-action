@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites>
+    <testsuite name="pytest" errors="2" failures="0" skipped="1" tests="7" time="0.051" timestamp="2023-01-11T13:07:26.358249" hostname="Elenas-MacBook-Pro.local">
+        <testcase classname="tests_temp.test_first" name="test_first_one" time="0.000" />
+        <testcase classname="tests_temp.test_first" name="test_first_two" time="0.000" />
+        <testcase classname="tests_temp.test_second" name="test_second_one" time="0.000" />
+        <testcase classname="tests_temp.test_second" name="test_second_two" time="0.000" />
+        <testcase classname="tests_temp.test_second" name="test_second_three" time="0.000">
+            <skipped type="pytest.skip" message="unconditional skip">/Users/elenakulgavaya/work/idiomatic/formulabase/tests_temp/test_second.py:12: unconditional skip</skipped>
+        </testcase>
+        <testcase classname="tests_temp.suite_one.test_error" name="test_failure" time="0.000">
+            <error message="failed on setup with &quot;AssertionError: Test setup failed&#10;assert False&quot;">@pytest.fixture(scope='module', autouse=True)
+    def failed_prec():
+&gt;       assert False, 'Test setup failed'
+E       AssertionError: Test setup failed
+E       assert False
+
+tests_temp/suite_one/test_error.py:6: AssertionError</error>
+        </testcase>
+        <testcase classname="tests_temp.suite_one.test_error" name="test_success" time="0.000">
+            <error message="failed on setup with &quot;AssertionError: Test setup failed&#10;assert False&quot;">@pytest.fixture(scope='module', autouse=True)
+    def failed_prec():
+&gt;       assert False, 'Test setup failed'
+E       AssertionError: Test setup failed
+E       assert False
+
+tests_temp/suite_one/test_error.py:6: AssertionError</error>
+        </testcase>
+    </testsuite>
+</testsuites>

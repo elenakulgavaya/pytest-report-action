@@ -1,0 +1,48 @@
+name: Tests
+on: #[push]
+  pull_request:
+    branches: 
+      - master
+    types: [opened, synchronize, reopened, ready_for_review]
+
+jobs:
+  # npm-tests:
+  #   runs-on: ubuntu-22.04
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - run: npm ci
+  #     - run: npm test
+  failure-tests:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - name: Test action
+        uses: ./
+        with:
+          path: "**/TEST-Failure.xml"
+      - name: Assert failure
+        if: success()
+        run: |
+          echo "::error::failure-tests-notoken should have failed and reported annations on this step. But instead succeeded";
+          exit 1;
+  error-tests:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - name: Test action
+        uses: ./
+        with:
+          path: "**/TEST-Error.xml"
+      - name: Assert failure
+        if: success()
+        run: |
+          echo "::error::error-tests-notoken should have failed and reported annations on this step. But instead succeeded.";
+          exit 1;
+  success-tests:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - name: Test action
+        uses: ./
+        with:
+          path: "**/TEST-Success.xml"

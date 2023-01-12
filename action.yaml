@@ -1,13 +1,17 @@
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: "Pytest Report Annotations"
+description: "List failed tests summary and results as annotations."
+branding:
+  icon: "box"
+  color: "green"
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  path:
+    description: "glob to junit xml files"
     required: true
-    default: 'World'
-outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+    default: "**/TEST-*.xml"
+  numFailures:
+    description: "max number of failed tests to include"
+    require: true
+    default: 10
 runs:
-  using: 'node16'
-  main: 'index.js'
+  using: "node16"
+  main: "index.js"
