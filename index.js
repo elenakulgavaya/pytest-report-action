@@ -49,7 +49,7 @@ const { Cipher } = require("crypto");
     } else {
 
       for (const annotation of annotations) {
-        core.setOutput(annotation.message)
+        core.notice(annotation.message)
         // core.setFailed(annotation.message);
       }
     }
